@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public PlayerAttack attack;
     private Rigidbody2D Rigidbody;
     private bool TouchGround;
     public PlayerData data;
@@ -42,6 +43,11 @@ public class PlayerManager : MonoBehaviour
         {
             Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, data.JumpSpeed);
             TouchGround = false;
+        }
+
+        if (Input.GetKey("j"))
+        {
+            attack.newAttack();
         }
     }
     public void NewGame()
