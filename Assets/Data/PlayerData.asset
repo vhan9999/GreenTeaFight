@@ -15,6 +15,6 @@ MonoBehaviour:
   MoveSpeed: 5
   JumpSpeed: 10
   DashFrameMoveTimes: 10
-  DashCd: 3
+  DashCd: 0
   DashBackTime: 5
-  QueueTime: 7.012907
+  QueueTime: 10.000302
