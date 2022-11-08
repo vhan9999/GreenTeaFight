@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 5
   JumpSpeed: 10
+  DashFrameMoveTimes: 10
+  DashCd: 3
+  DashBackTime: 5
+  QueueTime: 7.012907

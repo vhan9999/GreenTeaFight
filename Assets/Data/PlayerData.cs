@@ -6,6 +6,11 @@ public class PlayerData : ScriptableObject
 {
     public float MoveSpeed;
     public float JumpSpeed;
-    public Queue<GameObject> bulletList = new Queue<GameObject>();
+    public float DashFrameMoveTimes;
+
+    public Queue<Vector2> pastLocal = new Queue<Vector2>();
+    public float DashCd;
+    public float DashBackTime;
+    public float QueueTime;
 }
 
