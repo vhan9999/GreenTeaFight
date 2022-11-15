@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -22,6 +23,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject PastPlayer;
     public PlayerData data;
     //public GameObject attack;
+    public bool attacked;
 
     public Animator playerAction;
 
@@ -35,6 +37,7 @@ public class PlayerManager : MonoBehaviour
             transform.position.x,
             transform.position.y
         ));
+        
     }
 
     // Update is called once per frame
@@ -111,13 +114,16 @@ public class PlayerManager : MonoBehaviour
                 Move(0.0f, Rigidbody.velocity.y);
                 //Rigidbody.velocity = new Vector2(0.0f, Rigidbody.velocity.y);
             }
-            else if (Input.GetKey("d"))
+            else if (Input.GetKey("d") && transform.position.x< data.xMax)
             {
                 Move(data.MoveSpeed, Rigidbody.velocity.y);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
                 //Rigidbody.velocity = new Vector2(data.MoveSpeed, Rigidbody.velocity.y);
+                
             }
-            else if (Input.GetKey("a"))
+            else if (Input.GetKey("a") && transform.position.x > data.xMin)
             {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
                 Move(-data.MoveSpeed, Rigidbody.velocity.y);
                 //Rigidbody.velocity = new Vector2(-data.MoveSpeed, Rigidbody.velocity.y);
             }
@@ -136,6 +142,7 @@ public class PlayerManager : MonoBehaviour
             if (Input.GetKey("j"))
             {
                 nowPlayerState = PlayerState.Attack;
+                attacked = false;
                 //attack.SetBool("Attack", true);
             }
             if (Input.GetKey("k") && Dashing == false)
@@ -172,6 +179,7 @@ public class PlayerManager : MonoBehaviour
         TouchGround = false;
         nowPlayerState = PlayerState.Idle;
         DashCounter = 0;
+        attacked = false;
     }
     public void OnCollisionStay2D(Collision2D collision)
     {
@@ -180,4 +188,41 @@ public class PlayerManager : MonoBehaviour
             TouchGround = true;
         }
     }
+
+    public void gameover()
+    {
+        
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+        if (attacked == false 
+            && collision.gameObject.CompareTag("enemy") 
+            && collision.gameObject.transform.rotation == this.transform.rotation)
+        {
+            data.EnemyHP -= data.PlayerDamege;
+            attacked = true;
+            if (data.EnemyHP <= 0)
+            {
+                gameover();
+            }
+        }
+    }
+    
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        /*
+        Debug.Log(collision.gameObject.tag);
+        if (attacked == false && collision.gameObject.CompareTag("enemy"))
+        {
+            data.EnemyHP -= data.PlayerDamege;
+            attacked = true;
+            if (data.EnemyHP <= 0)
+            {
+                gameover();
+            }
+        }
+        */
+    } 
 }

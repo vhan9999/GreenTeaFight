@@ -17,4 +17,5 @@ MonoBehaviour:
   DashFrameMoveTimes: 10
   DashCd: 0
   DashBackTime: 5
-  QueueTime: 10.000302
+  QueueTime: 10.001114
+  PlayerDamege: 10
