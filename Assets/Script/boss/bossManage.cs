@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class bossManage : MonoBehaviour
@@ -15,6 +16,7 @@ public class bossManage : MonoBehaviour
     private bool TouchGround;
     private bool leftDir;
     private int AttackLoopNum = 2;
+    public PlayerData data;
     enum bossState
     {
         Idle = 0,
@@ -35,8 +37,11 @@ public class bossManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         Debug.Log(bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("bossActiveEnd"));
         Debug.Log(nowBossState);
+        
+        */
         bossAnimator.SetInteger("state", (int)nowBossState);
         switch (nowBossState)
         {
@@ -69,7 +74,9 @@ public class bossManage : MonoBehaviour
         nowBossState = bossState.Idle;
         leftDir = true;
         TouchGround = false;
+        data.EnemyHP = 100;
     }
+
     private void Move()
     {
         if (bossT.position.x > playerT.position.x)
@@ -134,5 +141,9 @@ public class bossManage : MonoBehaviour
         {
             TouchGround = true;
         }
+    } 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.tag);
     } 
 }

@@ -1,32 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+namespace Script
 {
-    // Start is called before the first frame update
-    private bool attacked = false;
-    void Start()
+    public class PlayerAttack : MonoBehaviour
     {
-        newAttack();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-    public void newAttack()
-    {
-        attacked = false;
-    }
-
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "enemy" && attacked == false)
+        
+        // Start is called before the first frame update
+        private bool _attacked = false;
+        
+        void Start()
         {
-            attacked = true;
-            //enemy -HP
+            NewAttack();
         }
 
+        // Update is called once per frame
+        void Update()
+        {
+        }
+        public void NewAttack()
+        {
+            _attacked = false;
+        }
+
+        public void OnCollisionStay2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("enemy") && _attacked == false)
+            {
+                _attacked = true;
+                //enemy -HP
+            }
+
+        }
     }
 }

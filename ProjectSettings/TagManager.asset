@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - enemy
+  - attack
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - player
   - attack
   - map
-  - 
-  - 
+  - pastplayer
+  - enemy
   - 
   - 
   - 
