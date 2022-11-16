@@ -928,6 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.004
+  chargeSpeed: 0.015
   distance: 3.5
   player: {fileID: 1281502455}
   HP: 0
